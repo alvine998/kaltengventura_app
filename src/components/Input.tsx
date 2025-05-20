@@ -1,5 +1,6 @@
-import {View, Text, TextInput} from 'react-native';
-import React from 'react';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 interface TextInputProps {
   placeholder?: string;
@@ -18,6 +19,7 @@ export default function Input({
   keyboardType,
   icon,
 }: TextInputProps) {
+  const [show, setShow] = useState<boolean>(true);
   return (
     <View style={{marginTop: 20, width: '100%'}}>
       {icon && (
@@ -25,7 +27,7 @@ export default function Input({
       )}
       <TextInput
         placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
+        secureTextEntry={show && secureTextEntry}
         value={value}
         onChangeText={onChangeText}
         keyboardType={keyboardType || 'default'}
@@ -38,6 +40,13 @@ export default function Input({
           paddingHorizontal: icon ? 35 : 20,
         }}
       />
+      {secureTextEntry && (
+        <TouchableOpacity
+          style={{position: 'absolute', top: 12, right: 17}}
+          onPress={() => setShow(!show)}>
+          <Icon name={show ? 'eye-slash' : 'eye'} size={15} color={'#000'} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
