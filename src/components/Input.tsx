@@ -9,6 +9,7 @@ interface TextInputProps {
   onChangeText: any;
   keyboardType?: any;
   icon?: any;
+  label?: string;
 }
 
 export default function Input({
@@ -18,12 +19,18 @@ export default function Input({
   onChangeText,
   keyboardType,
   icon,
+  label,
 }: TextInputProps) {
   const [show, setShow] = useState<boolean>(true);
   return (
     <View style={{marginTop: 20, width: '100%'}}>
       {icon && (
         <View style={{position: 'absolute', top: 14, left: 14}}>{icon}</View>
+      )}
+      {label && (
+        <Text style={{marginBottom: 5, fontSize: 14, color: '#808080', marginLeft:10}}>
+          {label}
+        </Text>
       )}
       <TextInput
         placeholder={placeholder}

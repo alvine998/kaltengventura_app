@@ -1,11 +1,19 @@
-import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Home({navigation}: any) {
+  const fullWidth = Dimensions.get('window').width;
   return (
-    <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}}>
+    <ScrollView style={{flex: 1}} contentContainerStyle={{paddingBottom: 30}}>
       <LinearGradient
         style={{flex: 1, paddingVertical: 50, paddingHorizontal: 20}}
         colors={['#0000FF', '#87CEFA']} // Blue to light blue
@@ -25,7 +33,8 @@ export default function Home({navigation}: any) {
                 color={'white'}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Notification')}>
               <Icon name="notifications-outline" size={30} color={'white'} />
             </TouchableOpacity>
           </View>
@@ -52,6 +61,139 @@ export default function Home({navigation}: any) {
               }}>
               Sarana kebutuhan bisnis dan usaha anda
             </Text>
+          </View>
+        </View>
+
+        <View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('IntroCapital')}
+            style={{
+              marginTop: 20,
+              borderRadius: 10,
+              width: '100%',
+              height: 70,
+              backgroundColor: 'transparent',
+              paddingHorizontal: 20,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 20,
+              borderWidth: 1,
+              borderColor: '#dfdfdf',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#dfdfdf',
+                borderRadius: 10,
+                padding: 10,
+                width: 40,
+                height: 40,
+              }}>
+              <Image
+                source={require('../../assets/images/refresh_icon.png')}
+                style={{width: 30, height: 30}}
+              />
+            </View>
+            <Text style={{color: 'white', fontSize: 20}}>Modal Usaha</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              marginTop: 10,
+              borderRadius: 10,
+              width: '100%',
+              height: 70,
+              paddingHorizontal: 20,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 20,
+              borderWidth: 1,
+              borderColor: '#dfdfdf',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#dfdfdf',
+                borderRadius: 10,
+                padding: 10,
+                width: 40,
+                height: 40,
+              }}>
+              <Image
+                source={require('../../assets/images/doc_icon.png')}
+                style={{width: 30, height: 30}}
+              />
+            </View>
+            <Text style={{color: 'white', fontSize: 20}}>Pembiayaan</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{marginTop: 20}}>
+          <Text style={{color: 'black', fontSize: 18, fontWeight: 'bold'}}>
+            Promo
+          </Text>
+          <Image
+            source={require('../../assets/images/promo-1.png')}
+            style={{
+              width: '100%',
+              height: 200,
+              marginTop: 10,
+              borderRadius: 10,
+            }}
+          />
+        </View>
+
+        <View style={{marginTop: 20}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
+              <Icon name="information-circle" size={30} color={'white'} />
+              <Text style={{color: 'white', fontSize: 16, fontWeight: 'bold'}}>
+                Info Sarana Kalteng Ventura
+              </Text>
+            </View>
+            <TouchableOpacity>
+              <Text style={{color: 'white', fontSize: 14}}>Lihat Semua</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{flexDirection: 'row', gap: 10}}>
+            <TouchableOpacity style={{width: fullWidth / 2 - 25}}>
+              <Image
+                source={require('../../assets/images/info-1.png')}
+                style={{
+                  width: fullWidth / 2 - 25,
+                  height: 200,
+                  marginTop: 10,
+                  borderRadius: 10,
+                }}
+              />
+              <Text style={{color: 'white', fontSize: 14}}>
+                Persyaratan Umum - Peminjaman Dana Tunai di PT Sarana Kalteng
+                Ventura
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{width: fullWidth / 2 - 25}}>
+              <Image
+                source={require('../../assets/images/info-2.png')}
+                style={{
+                  width: fullWidth / 2 - 25,
+                  height: 200,
+                  marginTop: 10,
+                  borderRadius: 10,
+                }}
+              />
+              <Text style={{color: 'white', fontSize: 14}}>
+                Podcast Kalteng Ventura (Pembiayaan)
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </LinearGradient>
