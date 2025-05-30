@@ -5,13 +5,36 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
+  Linking,
 } from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Toast from 'react-native-toast-message';
 
 export default function Home({navigation}: any) {
   const fullWidth = Dimensions.get('window').width;
+  const openAllInfo = async () => {
+    const url = 'https://kaltengventura.com/blog';
+    try {
+      const supported = await Linking.canOpenURL(url);
+      console.log('Supported:', supported);
+
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        navigation.navigate('WebViewBlog', {url: url});
+      }
+    } catch (error) {
+      console.error('An error occurred', error);
+      Toast.show({
+        type: 'error',
+        text1: 'Failed',
+        text2: 'Cannot open this link',
+        position: 'top',
+      });
+    }
+  };
   return (
     <ScrollView style={{flex: 1}} contentContainerStyle={{paddingBottom: 30}}>
       <LinearGradient
@@ -100,6 +123,7 @@ export default function Home({navigation}: any) {
           </TouchableOpacity>
 
           <TouchableOpacity
+            onPress={() => navigation.navigate('Simulation')}
             style={{
               marginTop: 10,
               borderRadius: 10,
@@ -160,7 +184,7 @@ export default function Home({navigation}: any) {
                 Info Sarana Kalteng Ventura
               </Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={openAllInfo}>
               <Text style={{color: 'white', fontSize: 14}}>Lihat Semua</Text>
             </TouchableOpacity>
           </View>

@@ -46,6 +46,7 @@ export default function Input({
           borderRadius: 20,
           paddingHorizontal: icon ? 35 : 20,
         }}
+        placeholderTextColor={'#808080'}
       />
       {secureTextEntry && (
         <TouchableOpacity

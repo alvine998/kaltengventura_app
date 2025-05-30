@@ -13,6 +13,10 @@ import Chat from './src/screens/chat/Chat';
 import {BottomTabs} from './src/components/BottomTabs';
 import IntroCapital from './src/screens/capital/Intro';
 import InputCapital from './src/screens/capital/Input';
+import DocumentCapital from './src/screens/capital/Document';
+import WaitingVerify from './src/screens/capital/WaitingVerify';
+import Simulation from './src/screens/funding/Simulation';
+import WebViewBlog from './src/screens/webview/WebViewBlog';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +36,10 @@ export default function App() {
           <Stack.Screen name="Chat" component={Chat} />
           <Stack.Screen name="IntroCapital" component={IntroCapital} />
           <Stack.Screen name="InputCapital" component={InputCapital} />
+          <Stack.Screen name="DocumentCapital" component={DocumentCapital} />
+          <Stack.Screen name="WaitingVerify" component={WaitingVerify} />
+          <Stack.Screen name="Simulation" component={Simulation} />
+          <Stack.Screen name="WebViewBlog" component={WebViewBlog} />
         </Stack.Navigator>
       </NavigationContainer>
       <Toast />
