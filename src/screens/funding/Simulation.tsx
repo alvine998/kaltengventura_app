@@ -66,22 +66,24 @@ export default function Simulation({navigation}: any) {
           visible={modal.open && modal.key === 'fund'}
           onClose={() => setModal({...modal, open: false, key: ''})}
           title="Pilih Pembiayaan">
-          <ScrollView
-            style={{padding: 20}}
-            contentContainerStyle={{paddingBottom: 50}}>
-            {FUNDINGS?.map((item: any, index: number) => (
-              <Button
-                label={'Rp ' + formatThousand(item.amount)}
-                onPress={() => {
-                  setPayload({...payload, fund: item.amount});
-                  setModal({...modal, open: false, key: ''});
-                }}
-                bgColor={Colors.border}
-                color={'black'}
-                key={index}
-              />
-            ))}
-          </ScrollView>
+          <View style={{height: 300}}>
+            <ScrollView
+              style={{padding: 20}}
+              contentContainerStyle={{paddingBottom: 50}}>
+              {FUNDINGS?.map((item: any, index: number) => (
+                <Button
+                  label={'Rp ' + formatThousand(item.amount)}
+                  onPress={() => {
+                    setPayload({...payload, fund: item.amount});
+                    setModal({...modal, open: false, key: ''});
+                  }}
+                  bgColor={Colors.border}
+                  color={'black'}
+                  key={index}
+                />
+              ))}
+            </ScrollView>
+          </View>
         </ModalComponent>
         <Button
           label={payload?.tenor ? payload?.tenor + ' Tahun' : 'Jangka Waktu'}
@@ -95,22 +97,24 @@ export default function Simulation({navigation}: any) {
           visible={modal.open && modal.key === 'tenor'}
           onClose={() => setModal({...modal, open: false, key: ''})}
           title="Pilih Pembiayaan">
-          <ScrollView
-            style={{padding: 20}}
-            contentContainerStyle={{paddingBottom: 50}}>
-            {TENORS?.map((item: any, index: number) => (
-              <Button
-                label={item.tenor + ' Tahun'}
-                onPress={() => {
-                  setPayload({...payload, tenor: item.tenor});
-                  setModal({...modal, open: false, key: ''});
-                }}
-                bgColor={Colors.border}
-                color={'black'}
-                key={index}
-              />
-            ))}
-          </ScrollView>
+          <View style={{height: 250}}>
+            <ScrollView
+              style={{padding: 20}}
+              contentContainerStyle={{paddingBottom: 30}}>
+              {TENORS?.map((item: any, index: number) => (
+                <Button
+                  label={item.tenor + ' Tahun'}
+                  onPress={() => {
+                    setPayload({...payload, tenor: item.tenor});
+                    setModal({...modal, open: false, key: ''});
+                  }}
+                  bgColor={Colors.border}
+                  color={'black'}
+                  key={index}
+                />
+              ))}
+            </ScrollView>
+          </View>
         </ModalComponent>
         <Button
           label="Angsuran"

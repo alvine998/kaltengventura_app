@@ -4,6 +4,8 @@ import {Colors} from '../../../utils/color';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import apiService from '../../../utils/apiService';
+import Toast from 'react-native-toast-message';
 
 export default function Register({navigation}: any) {
   const [step, setStep] = useState<number>(1);
@@ -13,9 +15,37 @@ export default function Register({navigation}: any) {
     password: '',
     phone: '',
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (name: string, value: string) => {
     setPayload({...payload, [name]: value});
+  };
+  const onSubmit = async () => {
+    setLoading(true);
+    try {
+      const result = await apiService.post('/user', {
+        ...payload,
+        status: 'active',
+        from: 'apps',
+      });
+      Toast.show({
+        type: 'success',
+        text1: 'Success',
+        text2: 'Berhasil Membuat Akun',
+        position: 'top',
+      });
+      navigation.navigate('Login');
+      setLoading(false);
+    } catch (error: any) {
+      console.log(error?.response);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: error.response && error.response.data.error_message,
+        position: 'top',
+      });
+      setLoading(false);
+    }
   };
   if (step === 1) {
     return (
@@ -71,42 +101,43 @@ export default function Register({navigation}: any) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-            <Icon name='user-circle' size={50} color="black" />
-          </TouchableOpacity>
+          <Icon name="user-circle" size={50} color="black" />
+        </TouchableOpacity>
         <View style={{marginTop: 20, width: '100%', paddingHorizontal: 20}}>
           <ScrollView>
             <Input
               value={payload.name}
               onChangeText={(e: any) => handleChange('name', e)}
               placeholder="Nama"
-              icon={<Icon name='user' />}
+              icon={<Icon name="user" />}
             />
             <Input
               value={payload.email}
               onChangeText={(e: any) => handleChange('email', e)}
               placeholder="Email"
-              icon={<Icon name='envelope' />}
+              icon={<Icon name="envelope" />}
             />
             <Input
               value={payload.phone}
               onChangeText={(e: any) => handleChange('phone', e)}
               placeholder="Nomor Telepon"
-              icon={<Icon name='phone' />}
+              icon={<Icon name="phone" />}
             />
             <Input
               value={payload.password}
               secureTextEntry
               onChangeText={(e: any) => handleChange('password', e)}
               placeholder="Password"
-              icon={<Icon name='lock' />}
+              icon={<Icon name="lock" />}
             />
           </ScrollView>
 
           <View style={{marginTop: 50}}>
             <Button
-              label="Daftar"
-              onPress={() => navigation.navigate('Login')}
+              label={loading ? 'Mendaftarkan...' : 'Daftar'}
+              onPress={onSubmit}
               bgColor={Colors.primary}
+              disabled={loading}
             />
           </View>
         </View>
