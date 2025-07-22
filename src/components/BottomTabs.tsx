@@ -3,6 +3,8 @@ import Home from '../screens/home/Home';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import {Text} from 'react-native';
+import Profile from '../screens/profile/Profile';
+import ActiveHistory from '../screens/history/active/Active';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,8 +53,8 @@ export const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name="History"
-        component={Home}
+        name="ActiveHistory"
+        component={ActiveHistory}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             // You can return any component that you like here!
@@ -70,19 +72,13 @@ export const BottomTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Profil"
-        component={Home}
+        name="Profile"
+        component={Profile}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             // You can return any component that you like here!
             // For example, you can use Ionicons or any other icon library
-            return (
-              <IconFA
-                name={"user"}
-                size={size}
-                color={color}
-              />
-            );
+            return <IconFA name={'user'} size={size} color={color} />;
           },
           tabBarLabel: ({focused}) => {
             return (

@@ -4,6 +4,14 @@ import Input from '../../../components/Input';
 import Button from '../../../components/Button';
 import {Colors} from '../../../utils/color';
 import Toast from 'react-native-toast-message';
+import apiService from '../../../utils/apiService';
+import {IUser} from '../../../types/user';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+interface ApiResponse {
+  result: IUser;
+}
+
 export default function Login({navigation}: any) {
   const [loading, setLoading] = useState<boolean>(false);
   const [payload, setPayload] = useState<any>({email: '', password: ''});
@@ -24,16 +32,26 @@ export default function Login({navigation}: any) {
         });
         return;
       }
+      const result: ApiResponse = await apiService.post('/user/login', payload);
+      setLoading(false);
       Toast.show({
         type: 'success',
         text1: 'Success',
-        text2: 'Selamat Datang User',
+        text2: 'Selamat Datang di Kalteng Ventura' + ' ' + result.result.name,
         position: 'top',
       });
-      setLoading(false);
+      AsyncStorage.setItem('user', JSON.stringify(result.result));
       navigation.navigate('Home');
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      Toast.show({
+        type: 'error',
+        text1: 'Failed',
+        text2:
+          (error.response && error.response.data.message) ||
+          error.response.data.error_message,
+        position: 'top',
+      });
       setLoading(false);
     }
   };
