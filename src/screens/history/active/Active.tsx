@@ -163,9 +163,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 80,
+    height: 100,
     backgroundColor: '#fff',
     gap: 80,
+    paddingTop:30
   },
   card: {
     backgroundColor: '#fff',

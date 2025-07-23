@@ -89,6 +89,8 @@ export default function DetailPayment({navigation}: any) {
           paddingHorizontal: 20,
           paddingVertical: 20,
           backgroundColor: '#fff',
+          height: 100,
+          paddingTop: 40,
         }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrow-left" size={20} type="FontAwesome" />

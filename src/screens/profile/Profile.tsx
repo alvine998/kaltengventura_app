@@ -36,16 +36,16 @@ export default function Profile({navigation}: any) {
     fetchUserData();
   }, []);
   const openWhatsApp = (phoneNumber: string, message?: string) => {
-    const formattedNumber = phoneNumber.replace(/\D/g, ''); // hapus karakter non-angka
+    const formattedNumber = phoneNumber.replace(/\D/g, '');
     const encodedMessage = message ? encodeURIComponent(message) : '';
-    const url = `whatsapp://send?phone=${formattedNumber}${
-      message ? `&text=${encodedMessage}` : ''
+    const url = `https://wa.me/${formattedNumber}${
+      message ? `?text=${encodedMessage}` : ''
     }`;
 
     Linking.canOpenURL(url)
       .then(supported => {
         if (!supported) {
-          Alert.alert('WhatsApp tidak terpasang');
+          Alert.alert('Tidak dapat membuka WhatsApp');
         } else {
           return Linking.openURL(url);
         }
