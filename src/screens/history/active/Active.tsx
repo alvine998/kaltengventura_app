@@ -116,7 +116,9 @@ export default function ActiveHistory({navigation}: any) {
                 </Text>
               </View>
             ))}
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.navigate('UnpaidPayment')}>
               <Icon
                 name="credit-card"
                 type="FontAwesome5"
@@ -125,7 +127,9 @@ export default function ActiveHistory({navigation}: any) {
               />
               <Text style={{color: '#fff', textAlign: 'center'}}>Tagihan</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.push('CashPayment')}>
               <Icon
                 name="hand-holding-usd"
                 type="FontAwesome5"
@@ -136,7 +140,9 @@ export default function ActiveHistory({navigation}: any) {
                 Tempat Pembayaran
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.push('DetailPayment')}>
               <Icon
                 name="file-alt"
                 type="FontAwesome5"

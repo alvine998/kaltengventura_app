@@ -22,6 +22,9 @@ import EditProfile from './src/screens/profile/edit-profile/EditProfile';
 import Privacy from './src/screens/profile/privacy/Privacy';
 import TermScreen from './src/screens/profile/term/Term';
 import ActiveHistory from './src/screens/history/active/Active';
+import DetailPayment from './src/screens/history/detail/Detail';
+import CashPayment from './src/screens/history/cash/Cash';
+import UnpaidPayment from './src/screens/history/unpaid/Unpaid';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +53,9 @@ export default function App() {
           <Stack.Screen name="Privacy" component={Privacy} />
           <Stack.Screen name="Term" component={TermScreen} />
           <Stack.Screen name="ActiveHistory" component={ActiveHistory} />
+          <Stack.Screen name="DetailPayment" component={DetailPayment} />
+          <Stack.Screen name="CashPayment" component={CashPayment} />
+          <Stack.Screen name="UnpaidPayment" component={UnpaidPayment} />
         </Stack.Navigator>
       </NavigationContainer>
       <Toast />
